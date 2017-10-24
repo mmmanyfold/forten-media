@@ -1,9 +1,7 @@
 (ns forten-media.views
   (:require [re-frame.core :as re-frame]
             [re-com.core :as re-com]
-            [forten-media.subs :as subs]
-            ))
-
+            [forten-media.subs :as subs]))
 
 ;; home
 
@@ -33,7 +31,7 @@
 
 (defn link-to-home-page []
   [re-com/hyperlink-href
-   :label "go to Home Page"
+   :label "Something Else !!!!"
    :href "#/"])
 
 (defn about-panel []
