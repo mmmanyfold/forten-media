@@ -1,0 +1,1 @@
+(ns forten-media.core)
