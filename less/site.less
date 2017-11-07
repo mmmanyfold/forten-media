@@ -16,13 +16,11 @@ body {
   .left, .right{
       width: 50%;
     }
-  .left{
-      border-right: 1px solid gray;
+  .left, .right {
       display: flex;
       align-items: center;
       justify-content: center;
       .display{
-        width: 70%;
         img{
           width:100%;
         }
@@ -43,7 +41,16 @@ body {
         }
       }
     }
+  .left{
+      border-right: 1px solid gray;
+      .display {
+          width: 70%;
+      }
+  }
   .right{
-    border-left: 1px solid gray;
-    }
+      border-left: 1px solid grey;
+      .display {
+          width: 40%;
+      }
+  }
 }
