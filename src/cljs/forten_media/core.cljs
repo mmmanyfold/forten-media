@@ -3,7 +3,7 @@
             [re-frame.core :as re-frame]
             [forten-media.events :as events]
             [forten-media.routes :as routes]
-            [forten-media.views :as views]
+            [forten-media.app :as app]
             [forten-media.config :as config]))
 
 
@@ -14,7 +14,7 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
+  (reagent/render [app/main-view]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []

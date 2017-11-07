@@ -1,8 +1,8 @@
-(ns forten-media.views.about-us
+(ns forten-media.views.home
   (:require [re-frame.core :as re-frame]
             [re-com.core :as re-com]
             [forten-media.subs :as subs]))
 
 
-(defn about-us-view []
-  [:div "this is the about us view"])
+(defn home-view []
+  [:div "this is the home view"])
