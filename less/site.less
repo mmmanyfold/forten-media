@@ -5,52 +5,49 @@
 
 body {
     color: @teal4;
-    height: 100%
+    height: 100%;
 }
 #app{
-  height: 100%;
+  height:100%;
 }
 .wrapper{
   height: 100%;
   display: flex;
-  .left, .right{
-      width: 50%;
+}
+.left, .right{
+  width: 50%;
+}
+
+.left{
+  border-right: 1px solid grey;
+
+}
+
+.right{
+  border-left: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .display{
+    width: 40%;
+    img{
+      width: 100%;
     }
-  .left, .right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .display{
-        img{
-          width:100%;
-        }
-        h2,h3{
-          margin:0;
-          font-size: .8em;
-        }
-        h2{
-          font-weight: 700;
-          color: @teal3;
-        }
-        span{
-          color: @teal1;
-        }
-        h3{
-          font-weight: 200;
-          color: @teal1;
-        }
-      }
+    h2, h3{
+      margin:0;
+      text-align: right;
+      font-size: .8em;
     }
-  .left{
-      border-right: 1px solid gray;
-      .display {
-          width: 70%;
+    h2{
+      font-weight: 700;
+      color: @teal3;
+    }
+    span{
+      color: @teal1;
       }
-  }
-  .right{
-      border-left: 1px solid grey;
-      .display {
-          width: 40%;
-      }
+    h3{
+      font-weight: 200;
+      color: @teal1;
+    }
   }
 }
