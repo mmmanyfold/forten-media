@@ -47,8 +47,8 @@
                     :source-map-timestamp true
                     :preloads             [devtools.preload
                                            re-frisk.preload]
-                    :external-config      {:devtools/config {:features-to-install :all}}
-                    }}
+                    :external-config      {:devtools/config {:features-to-install :all}}}}
+
 
     {:id           "min"
      :source-paths ["src/cljs"]
@@ -64,8 +64,8 @@
      :compiler     {:main          forten-media.runner
                     :output-to     "resources/public/js/compiled/test.js"
                     :output-dir    "resources/public/js/compiled/test/out"
-                    :optimizations :none}}
-    ]}
+                    :optimizations :none}}]}
+
 
   :main forten-media.server
 
@@ -73,5 +73,4 @@
 
   :uberjar-name "forten-media.jar"
 
-  :prep-tasks [["cljsbuild" "once" "min"]["less" "once"] "compile"]
-  )
+  :prep-tasks [["cljsbuild" "once" "min"]["less" "once"] "compile"])
