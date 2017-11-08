@@ -1,5 +1,56 @@
-@teal: #139d93;
+@teal1: #a2dbd7;
+@teal2: #7dcdc7;
+@teal3: #4fb9b1;
+@teal4: #139d93;
 
 body {
-    color: @teal;
+    color: @teal4;
+    height: 100%
+}
+#app{
+  height: 100%;
+}
+.wrapper{
+  height: 100%;
+  display: flex;
+  .left, .right{
+      width: 50%;
+    }
+  .left, .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .display{
+        img{
+          width:100%;
+        }
+        h2,h3{
+          margin:0;
+          font-size: .8em;
+        }
+        h2{
+          font-weight: 700;
+          color: @teal3;
+        }
+        span{
+          color: @teal1;
+        }
+        h3{
+          font-weight: 200;
+          color: @teal1;
+        }
+      }
+    }
+  .left{
+      border-right: 1px solid gray;
+      .display {
+          width: 70%;
+      }
+  }
+  .right{
+      border-left: 1px solid grey;
+      .display {
+          width: 40%;
+      }
+  }
 }
