@@ -4,53 +4,59 @@
 @teal4: #139d93;
 
 body {
-    color: @teal4;
-    height: 100%
+  color: @teal4;
+  height: 100%
 }
-#app{
+
+#app {
   height: 100%;
 }
-.wrapper{
+
+.wrapper {
   height: 100%;
   display: flex;
-  .left, .right{
-      width: 50%;
-    }
-  .left, .right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .display{
-        img{
-          width:100%;
-        }
-        h2,h3{
-          margin:0;
-          font-size: .8em;
-        }
-        h2{
-          font-weight: 700;
-          color: @teal3;
-        }
-        span{
-          color: @teal1;
-        }
-        h3{
-          font-weight: 200;
-          color: @teal1;
-        }
-      }
-    }
-  .left{
-      border-right: 1px solid gray;
-      .display {
-          width: 70%;
-      }
+}
+
+.left, .right {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left {
+  border-right: 1px solid gray;
+}
+
+.right {
+  border-left: 1px solid grey;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.display {
+  img {
+    width: 100%;
   }
-  .right{
-      border-left: 1px solid grey;
-      .display {
-          width: 40%;
-      }
+  h2,h3 {
+    margin: 0;
+    font-size: .8em;
+  }
+  h2 {
+    font-weight: 700;
+    color: @teal3;
+  }
+  h3 {
+    font-weight: 200;
+    color: @teal1;
+  }
+  span {
+    color: @teal1;
   }
 }

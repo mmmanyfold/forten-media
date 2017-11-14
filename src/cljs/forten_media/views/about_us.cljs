@@ -8,7 +8,7 @@
   [:div.wrapper
    [:div.left "this is the about us view"]
    [:div.right
-    [:div.display
+    [:div.display.w-40
      [:img {:src "../img/recipe.png"}]
      [:h2 "burger bowl recipe, " [:span "2017"]]
      [:h3 "form star living"]

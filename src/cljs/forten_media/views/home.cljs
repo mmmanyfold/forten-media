@@ -7,7 +7,7 @@
 (defn home-view []
   [:div.wrapper
     [:div.left
-     [:div.display
+     [:div.display.w-70
       [:img {:src "../img/demo-reel.png"}]
       [:h2 "demo reel, " [:span "2017"]]
       [:h3 "forten media, llc"]
