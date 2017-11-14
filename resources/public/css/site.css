@@ -60,7 +60,7 @@ h1 span {
 }
 .display h2,
 .display h3 {
-  margin: 0;
+  margin: .5em;
   font-size: .8em;
 }
 .display h2 {
@@ -73,4 +73,34 @@ h1 span {
 }
 .display span {
   color: #a2dbd7;
+}
+.toc {
+  width: 100%;
+  text-align: center;
+}
+.toc img {
+  margin-bottom: 5em;
+  width: 5em;
+}
+.toc h1 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2em;
+}
+.toc h1 span {
+  font-weight: 300;
+}
+.toc .number {
+  color: #139d93;
+}
+.toc .chapter {
+  margin-bottom: 2em;
+}
+.toc p {
+  font-size: 1.2em;
+  margin: 0;
+}
+.toc p span {
+  font-weight: 300;
 }

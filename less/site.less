@@ -5,7 +5,7 @@
 
 body {
   color: black;
-  height: 100%
+  height: 100%;
 }
 
 #app {
@@ -71,7 +71,7 @@ h1 {
     margin-bottom: 1em;
   }
   h2,h3 {
-    margin: 0;
+    margin: .5em;
     font-size: .8em;
   }
   h2 {
@@ -84,5 +84,36 @@ h1 {
   }
   span {
     color: @teal1;
+  }
+}
+
+.toc {
+  width: 100%;
+  text-align: center;
+  img {
+    margin-bottom: 5em;
+    width: 5em;
+  }
+  h1 {
+    margin:0;
+    text-transform: uppercase;
+    font-weight:700;
+    font-size: 2em;
+    span {
+      font-weight:300;
+    }
+  }
+  .number {
+    color: @teal4;
+  }
+  .chapter {
+    margin-bottom: 2em;
+  }
+  p {
+    font-size: 1.2em;
+    margin: 0;
+    span {
+      font-weight: 300;
+    }
   }
 }

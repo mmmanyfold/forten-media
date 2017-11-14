@@ -13,4 +13,26 @@
       [:h3 "forten media, llc"]
       [:h3 "video"]
       [:h3 "1920x804"]]]
-    [:div.right]])
+    [:div.right
+     [:div.toc
+      [:img {:src "../img/logo.png"}]
+      [:div.chapter
+       [:h1.number "4"]
+       [:h1 "intro" [:span "duction"]]]
+      [:div.chapter
+       [:h1.number "10"]
+       [:h1 "about " [:span "us"]]
+       [:p [:span "our "] "people"]
+       [:p [:span "our "] "story"]
+       [:p [:span "our "] "difference"]]
+      [:div.chapter
+       [:h1.number "14"]
+       [:h1 [:span "our " ]"work"]
+       [:p "projects"]
+       [:p [:span "how it "] "works"]]
+      [:div.chapter
+       [:h1.number "410"]
+       [:h1 "connect"]
+       [:p "contact"]
+       [:p "careers"]
+       [:p "faqs"]]]]])
