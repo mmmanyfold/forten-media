@@ -20,4 +20,5 @@
   (let [active-view (re-frame/subscribe [::subs/active-view])]
     [re-com/v-box
      :height "100%"
+     :justify :center
      :children [[views @active-view]]]))
