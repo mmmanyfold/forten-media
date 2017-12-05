@@ -26,6 +26,9 @@
   (defroute "/our-work" []
     (re-frame/dispatch [::events/set-active-view :our-work-view]))
 
+  (defroute "/our-difference" []
+    (re-frame/dispatch [::events/set-active-view :our-difference-view]))
+
 
   ;; --------------------
   (hook-browser-navigation!))

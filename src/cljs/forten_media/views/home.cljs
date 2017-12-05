@@ -24,7 +24,8 @@
        [:h1 "about " [:span "us"]]
        [:p [:span "our "] "people"]
        [:p [:span "our "] "story"]
-       [:p [:span "our "] "difference"]]
+       [:p [:a {:href "/#/our-difference"}
+            [:span "our "] "difference"]]]
       [:div.chapter
        [:h1.number "14"]
        [:h1 [:a {:href "/#/our-work"}
