@@ -23,8 +23,8 @@
   (defroute "/" []
     (re-frame/dispatch [::events/set-active-view :home-view]))
 
-  (defroute "/about" []
-    (re-frame/dispatch [::events/set-active-view :about-us-view]))
+  (defroute "/our-work" []
+    (re-frame/dispatch [::events/set-active-view :our-work-view]))
 
 
   ;; --------------------

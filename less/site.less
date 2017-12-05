@@ -65,15 +65,26 @@ body {
 .w-80 {
   width: 80%;
 }
+.footer-wrap{
+  position:absolute;
+  bottom: 5%;
+}
 .footer {
-  width: 100%;
+  width: 50%;
+  @media screen and (max-width:768px) {
+    width: 100%;
+  }
   display: flex;
   div {
     width: 33%;
   }
   color: @teal4;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 700;
+  a{
+    color: @teal4;
+    font-weight: normal;
+  }
 }
 h1 {
   text-align: center;
@@ -106,7 +117,7 @@ h1 {
   }
 }
 
-.toc {
+.toc{
   width: 100%;
   text-align: center;
   img {
@@ -127,6 +138,9 @@ h1 {
   }
   .chapter {
     margin-bottom: 2em;
+    a{
+    color: black;
+    }
   }
   p {
     font-size: 1.2em;

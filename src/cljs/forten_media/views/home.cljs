@@ -27,7 +27,8 @@
        [:p [:span "our "] "difference"]]
       [:div.chapter
        [:h1.number "14"]
-       [:h1 [:span "our " ]"work"]
+       [:h1 [:a {:href "/#/our-work"}
+             [:span "our " ]"work"]]
        [:p "projects"]
        [:p [:span "how it "] "works"]]
       [:div.chapter
