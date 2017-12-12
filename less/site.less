@@ -2,9 +2,10 @@
 @teal2: #7dcdc7;
 @teal3: #4fb9b1;
 @teal4: #139d93;
+@darkgrey: #313131;
 
 body {
-  color: black;
+  color: @darkgrey;
   height: 100%;
 }
 
@@ -15,6 +16,16 @@ body {
 .wrapper {
   height: 100%;
   display: flex;
+  flex-wrap: wrap;
+  @media screen and (max-width:877px) {
+    height: auto;
+  }
+}
+
+.hide-small {
+  @media screen and (max-width:877px) {
+    display: none;
+  }
 }
 
 .left, .right {
@@ -23,10 +34,16 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width:877px) {
+    width: 100%;
+  }
 }
 
 .left {
   border-right: 1px solid gray;
+  @media screen and (max-width:877px) {
+    border: none;
+  }
 }
 
 .right {
@@ -34,6 +51,9 @@ body {
     text-align: right;
   }
   border-left: 1px solid grey;
+  @media screen and (max-width:877px) {
+    border: none;
+  }
 }
 
 .w-70 {
@@ -46,33 +66,73 @@ body {
 .w-80 {
   width: 80%;
 }
+.footer-wrap{
+  position:absolute;
+  bottom: 5%;
+}
 .footer {
-  width: 100%;
+  width: 50%;
+  @media screen and (max-width:877px) {
+    width: 100%;
+  }
   display: flex;
   div {
     width: 33%;
   }
   color: @teal4;
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 700;
+  a{
+    color: @teal4;
+    font-weight: normal;
+  }
 }
 h1 {
   text-align: center;
+  margin-top: 0;
   margin-bottom: 1em;
   span {
     font-weight: 700;
   }
   font-weight: 300;
-  font-size: 5em;
+  font-size: 4em;
 }
 .display {
   img {
     width: 100%;
     margin-bottom: 1em;
+    margin-top: .5em;
+  }
+  h1 {
+    font-size: 2em;
+    @media screen and (min-width: 400px) {
+      font-size: 2.5em
+    }
+    @media screen and (min-width: 550px) {
+      font-size: 3.5em;
+    }
+    @media screen and (min-width: 700px) {
+      font-size: 4em;
+    }
+    @media screen and (min-width: 877px) {
+      font-size: 2.5em;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 3.5em;
+    }
+    @media screen and (min-width: 1300px) {
+      font-size: 4em;
+    }
+    @media screen and (min-width: 1500px) {
+      font-size: 5em;
+    }
+  }
+  h1 span {
+    color: @darkgrey;
   }
   h2,h3 {
-    margin: .5em;
-    font-size: .8em;
+    margin: .4em 0;
+    font-size: .9em;
   }
   h2 {
     font-weight: 700;
@@ -87,7 +147,7 @@ h1 {
   }
 }
 
-.toc {
+.toc{
   width: 100%;
   text-align: center;
   img {
@@ -108,6 +168,9 @@ h1 {
   }
   .chapter {
     margin-bottom: 2em;
+    a{
+    color: @darkgrey;
+    }
   }
   p {
     font-size: 1.2em;
@@ -116,4 +179,7 @@ h1 {
       font-weight: 300;
     }
   }
+}
+.quote {
+  font-style: italic;
 }

@@ -7,7 +7,7 @@
 (defn home-view []
   [:div.wrapper
     [:div.left
-     [:div.display.w-70
+     [:div.display.w-70.hide-small
       [:img {:src "../img/demo-reel.png"}]
       [:h2 "demo reel, " [:span "2017"]]
       [:h3 "forten media, llc"]
@@ -24,10 +24,12 @@
        [:h1 "about " [:span "us"]]
        [:p [:span "our "] "people"]
        [:p [:span "our "] "story"]
-       [:p [:span "our "] "difference"]]
+       [:p [:a {:href "/#/our-difference"}
+            [:span "our "] "difference"]]]
       [:div.chapter
        [:h1.number "14"]
-       [:h1 [:span "our " ]"work"]
+       [:h1 [:a {:href "/#/our-work"}
+             [:span "our " ]"work"]]
        [:p "projects"]
        [:p [:span "how it "] "works"]]
       [:div.chapter
