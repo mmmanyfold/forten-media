@@ -1,6 +1,37 @@
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../font/proximanova-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../font/proximanova-regularit.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../font/proximanova-extrabold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../font/proximanova-thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url("../font/proximanova-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
 body {
   color: #313131;
   height: 100%;
+  font-family: 'Proxima Nova';
 }
 #app {
   height: 100%;
@@ -34,27 +65,14 @@ body {
     width: 100%;
   }
 }
-.left {
-  border-right: 1px solid gray;
-}
-@media screen and (max-width: 877px) {
-  .left {
-    border: none;
-  }
-}
-.right {
-  border-left: 1px solid grey;
-}
 .right .display {
   text-align: right;
 }
-@media screen and (max-width: 877px) {
-  .right {
-    border: none;
-  }
-}
 .w-70 {
   width: 70%;
+}
+.w-50 {
+  width: 50%;
 }
 .w-40 {
   width: 40%;
@@ -63,14 +81,16 @@ body {
   width: 80%;
 }
 .footer-wrap {
-  position: absolute;
-  bottom: 5%;
+  position: fixed;
+  padding-bottom: 5em;
+  bottom: 0;
+  background-color: white;
 }
 .footer {
   width: 50%;
   display: flex;
   color: #139d93;
-  font-size: 1em;
+  font-size: 1.8em;
   font-weight: 700;
 }
 @media screen and (max-width: 877px) {
@@ -82,18 +102,22 @@ body {
   width: 33%;
 }
 .footer a {
-  color: #139d93;
-  font-weight: normal;
+  color: #a2dbd7;
+  font-weight: 500;
+  font-size: .65em;
 }
 h1 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 1em;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 4em;
 }
 h1 span {
   font-weight: 700;
+}
+.text {
+  margin-bottom: 2em;
 }
 .display img {
   width: 100%;
@@ -140,6 +164,7 @@ h1 span {
 }
 .display h1 span {
   color: #313131;
+  font-weight: 700;
 }
 .display h2,
 .display h3 {
@@ -172,7 +197,7 @@ h1 span {
   font-size: 2em;
 }
 .toc h1 span {
-  font-weight: 300;
+  font-weight: 400;
 }
 .toc .number {
   color: #139d93;
@@ -188,8 +213,15 @@ h1 span {
   margin: 0;
 }
 .toc p span {
-  font-weight: 300;
+  font-weight: 400;
 }
 .quote {
   font-style: italic;
+}
+.crease {
+  width: 1px;
+  background-color: #313131;
+  height: 100%;
+  position: fixed;
+  left: 50%;
 }

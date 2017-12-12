@@ -22,4 +22,5 @@
     [re-com/v-box
      :height "100%"
      :justify :center
-     :children [[views @active-view]]]))
+     :children [[views @active-view]
+                [:div.crease.hide-small]]]))

@@ -4,9 +4,40 @@
 @teal4: #139d93;
 @darkgrey: #313131;
 
+@font-face {
+  font-family: 'Proxima Nova';
+  src:url("../font/proximanova-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight:400;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src:url("../font/proximanova-regularit.ttf") format("truetype");
+  font-style: italic;
+  font-weight:400;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src:url("../font/proximanova-extrabold.ttf") format("truetype");
+  font-style: normal;
+  font-weight:700;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src:url("../font/proximanova-thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight:200;
+}
+@font-face {
+  font-family: 'Proxima Nova';
+  src:url("../font/proximanova-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight:500;
+}
 body {
   color: @darkgrey;
   height: 100%;
+  font-family: 'Proxima Nova';
 }
 
 #app {
@@ -38,28 +69,18 @@ body {
     width: 100%;
   }
 }
-
-.left {
-  border-right: 1px solid gray;
-  @media screen and (max-width:877px) {
-    border: none;
-  }
-}
-
 .right {
   .display {
     text-align: right;
-  }
-  border-left: 1px solid grey;
-  @media screen and (max-width:877px) {
-    border: none;
   }
 }
 
 .w-70 {
   width: 70%;
 }
-
+.w-50 {
+  width: 50%;
+}
 .w-40 {
   width: 40%;
 }
@@ -67,8 +88,10 @@ body {
   width: 80%;
 }
 .footer-wrap{
-  position:absolute;
-  bottom: 5%;
+  position:fixed;
+  padding-bottom: 5em;
+  bottom: 0;
+  background-color: white;
 }
 .footer {
   width: 50%;
@@ -80,11 +103,12 @@ body {
     width: 33%;
   }
   color: @teal4;
-  font-size: 1em;
+  font-size: 1.8em;
   font-weight: 700;
   a{
-    color: @teal4;
-    font-weight: normal;
+    color: @teal1;
+    font-weight: 500;
+    font-size: .65em;
   }
 }
 h1 {
@@ -94,8 +118,11 @@ h1 {
   span {
     font-weight: 700;
   }
-  font-weight: 300;
+  font-weight: 400;
   font-size: 4em;
+}
+.text{
+  margin-bottom: 2em;
 }
 .display {
   img {
@@ -129,6 +156,7 @@ h1 {
   }
   h1 span {
     color: @darkgrey;
+    font-weight: 700;
   }
   h2,h3 {
     margin: .4em 0;
@@ -157,10 +185,10 @@ h1 {
   h1 {
     margin:0;
     text-transform: uppercase;
-    font-weight:700;
+    font-weight: 700;
     font-size: 2em;
     span {
-      font-weight:300;
+      font-weight: 400;
     }
   }
   .number {
@@ -176,10 +204,17 @@ h1 {
     font-size: 1.2em;
     margin: 0;
     span {
-      font-weight: 300;
+      font-weight: 400;
     }
   }
 }
 .quote {
   font-style: italic;
+}
+.crease {
+  width: 1px;
+  background-color: @darkgrey;
+  height: 100%;
+  position: fixed;
+  left: 50%;
 }
