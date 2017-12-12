@@ -2,9 +2,10 @@
 @teal2: #7dcdc7;
 @teal3: #4fb9b1;
 @teal4: #139d93;
+@darkgrey: #313131;
 
 body {
-  color: black;
+  color: @darkgrey;
   height: 100%;
 }
 
@@ -100,6 +101,7 @@ h1 {
   img {
     width: 100%;
     margin-bottom: 1em;
+    margin-top: .5em;
   }
   h1 {
     font-size: 2em;
@@ -126,11 +128,11 @@ h1 {
     }
   }
   h1 span {
-    color: black;
+    color: @darkgrey;
   }
   h2,h3 {
-    margin: .5em 0;
-    font-size: .8em;
+    margin: .4em 0;
+    font-size: .9em;
   }
   h2 {
     font-weight: 700;
@@ -167,7 +169,7 @@ h1 {
   .chapter {
     margin-bottom: 2em;
     a{
-    color: black;
+    color: @darkgrey;
     }
   }
   p {

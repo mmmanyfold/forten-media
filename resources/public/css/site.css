@@ -1,5 +1,5 @@
 body {
-  color: black;
+  color: #313131;
   height: 100%;
 }
 #app {
@@ -98,6 +98,7 @@ h1 span {
 .display img {
   width: 100%;
   margin-bottom: 1em;
+  margin-top: .5em;
 }
 .display h1 {
   font-size: 2em;
@@ -138,12 +139,12 @@ h1 span {
   }
 }
 .display h1 span {
-  color: black;
+  color: #313131;
 }
 .display h2,
 .display h3 {
-  margin: .5em 0;
-  font-size: .8em;
+  margin: .4em 0;
+  font-size: .9em;
 }
 .display h2 {
   font-weight: 700;
@@ -180,7 +181,7 @@ h1 span {
   margin-bottom: 2em;
 }
 .toc .chapter a {
-  color: black;
+  color: #313131;
 }
 .toc p {
   font-size: 1.2em;
