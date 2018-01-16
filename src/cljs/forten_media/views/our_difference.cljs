@@ -15,7 +15,7 @@
      [:h1 "OUR " [:span "DIFFERENCE"]]
      [:div.footer-wrap.w-80
       [:div.footer
-       [:div [:a {:href "/"}
+       [:div [:a {:href "/#/"}
               "< table of contents"]]
        [:div {:style {:text-align "center"}} "14"]
        [:div ""]]]]]
