@@ -1,6 +1,5 @@
 (ns forten-media.views.our-work
   (:require [re-frame.core :as re-frame]
-            [re-com.core :as re-com]
             [forten-media.subs :as subs]
             [forten-media.components.footer :refer [footer-component]]))
 
@@ -18,4 +17,7 @@
      [:h2 "burger bowl recipe, " [:span "2017"]]
      [:h3 "form star living"]
      [:h3 "video"]
-     [:h3 "1080x1080"]]]])
+     [:h3 "1080x1080"]
+     [:br]
+     [:br]
+     [:br]]]])

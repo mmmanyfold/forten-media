@@ -1,7 +1,6 @@
 (ns forten-media.views.our-difference
   (:require [re-frame.core :as re-frame]
             [forten-media.components.footer :refer [footer-component]]
-            [re-com.core :as re-com]
             [forten-media.subs :as subs]))
 
 

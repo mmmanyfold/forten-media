@@ -40,6 +40,7 @@ body {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 1em;
 }
 @media screen and (max-width: 877px) {
   .wrapper {
@@ -82,7 +83,7 @@ body {
 }
 @media screen and (max-width: 877px) {
   .w-100-small {
-    width: 90%;
+    width: 100%;
   }
 }
 .footer-wrap {
