@@ -80,6 +80,11 @@ body {
 .w-80 {
   width: 80%;
 }
+@media screen and (max-width: 877px) {
+  .w-100-small {
+    width: 90%;
+  }
+}
 .footer-wrap {
   position: fixed;
   padding-bottom: 5em;
