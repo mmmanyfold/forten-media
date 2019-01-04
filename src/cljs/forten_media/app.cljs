@@ -3,15 +3,15 @@
             [re-com.core :as re-com]
             [forten-media.subs :as subs]
             [forten-media.views.home :refer [home-view]]
-            [forten-media.views.our-work :refer [our-work-view]]
-            [forten-media.views.our-difference :refer [our-difference-view]]))
+            [forten-media.views.about :refer [about-view]]
+            [forten-media.views.connect :refer [connect-view]]))
 ;; main
 
 (defn- views [view-name]
   (case view-name
     :home-view [home-view]
-    :our-work-view [our-work-view]
-    :our-difference-view [our-difference-view]
+    :about-view [about-view]
+    :connect-view [connect-view]
     [:div]))
 
 (defn show-view [view-name]

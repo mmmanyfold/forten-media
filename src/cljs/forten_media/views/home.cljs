@@ -1,16 +1,14 @@
-(ns forten-media.views.home
-  (:require [re-frame.core :as re-frame]
-            [re-com.core :as re-com]
-            [forten-media.subs :as subs]))
+(ns forten-media.views.home)
 
 
 (defn home-view []
   [:div.wrapper
-    [:div.left
-     [:div.display.w-70.hide-small
-      [:img {:src "../img/demo-reel.png"}]
-      [:h2 "demo reel, " [:span "2017"]]
-      [:h3 "forten media, llc"]
+    [:div.left.hide-small
+     [:div.display.w-70
+      [:a {:href "https://vimeo.com/fortenmedia"}
+       [:img {:src "../img/demo-reel.png"}]
+       [:h2 "demo reel, " [:span "2017"]]]
+      [:h3 "forten media"]
       [:h3 "video"]
       [:h3 "1920x804"]]]
     [:div.right
@@ -21,20 +19,13 @@
        [:h1 "intro" [:span "duction"]]]
       [:div.chapter
        [:h1.number "10"]
-       [:h1 "about " [:span "us"]]
-       [:p [:span "our "] "people"]
-       [:p [:span "our "] "story"]
-       [:p [:a {:href "/#/our-difference"}
-            [:span "our "] "difference"]]]
+       [:h1 [:a {:href "#/about"}
+             "about"]]]
       [:div.chapter
        [:h1.number "14"]
-       [:h1 [:a {:href "/#/our-work"}
-             [:span "our " ]"work"]]
-       [:p "projects"]
-       [:p [:span "how it "] "works"]]
+       [:h1 [:a {:href "https://vimeo.com/fortenmedia"}
+             [:span "our " ] "work"]]]
       [:div.chapter
        [:h1.number "410"]
-       [:h1 "connect"]
-       [:p "contact"]
-       [:p "careers"]
-       [:p "faqs"]]]]])
+       [:h1 [:a {:href "#/connect"}
+             "connect"]]]]]])

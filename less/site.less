@@ -3,6 +3,7 @@
 @teal3: #4fb9b1;
 @teal4: #139d93;
 @darkgrey: #313131;
+@lightgrey: #bfbfbf;
 
 @font-face {
   font-family: 'Proxima Nova';
@@ -34,6 +35,7 @@
   font-style: normal;
   font-weight:500;
 }
+
 body {
   color: @darkgrey;
   height: 100%;
@@ -44,39 +46,38 @@ body {
   height: 100%;
 }
 
+a, a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
 .wrapper {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 1em;
-  @media screen and (max-width:877px) {
-    height: auto;
-  }
-}
-
-.hide-small {
-  @media screen and (max-width:877px) {
-    display: none;
+  padding: 3.5em 0 10em 0;
+  @media screen and (max-width: 877px) {
+    padding-left: 2em;
+    padding-right: 2em;
   }
 }
 
 .left, .right {
   width: 50%;
+  font-size: 0.97em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width:877px) {
+  @media screen and (max-width: 877px) {
     width: 100%;
   }
 }
-.right {
-  .display {
-    text-align: right;
-  }
-}
+
 .w-70 {
   width: 70%;
+}
+.w-60 {
+  width: 60%;
 }
 .w-50 {
   width: 50%;
@@ -88,19 +89,18 @@ body {
   width: 80%;
 }
 .w-100-small {
-  @media screen and (max-width:877px) {
+  @media screen and (max-width: 600px) {
     width: 100%;
   }
 }
-.footer-wrap{
-  position:fixed;
-  padding-bottom: 5em;
+
+.footer-wrap {
+  position: fixed;
+  margin-top: 2.5em;
+  padding-bottom: 3.5em;
   bottom: 0;
-  background-color: white;
-  @media screen and (max-width:877px) {
-    padding-bottom: 1em;
-  }
 }
+
 .footer {
   width: 50%;
   @media screen and (max-width:877px) {
@@ -111,14 +111,36 @@ body {
     width: 33%;
   }
   color: @teal4;
-  font-size: 1.8em;
-  font-weight: 700;
-  a{
+  font-size: 1.6em;
+  font-weight: 500;
+  a {
     color: @teal1;
     font-weight: 500;
-    font-size: .50em;
+    font-size: .55em;
   }
 }
+
+.footer-wrap.w-80 {
+  display: block;
+  @media screen and (max-width:877px) {
+    display: none;
+  }
+}
+
+.footer-wrap.w-100-small {
+  display: none;
+  @media screen and (max-width:877px) {
+    display: block;
+    position: inherit;
+    .footer {
+      display: block;
+      div {
+        width: 100%;
+      }
+    }
+  }
+}
+
 h1 {
   text-align: center;
   margin-top: 0;
@@ -127,55 +149,35 @@ h1 {
     font-weight: 700;
   }
   font-weight: 400;
-  font-size: 4em;
+  font-size: 3.5em;
 }
+
 .text{
-  margin-bottom: 2em;
+  margin-bottom: 2.5em;
 }
+
 .display {
   img {
     width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
     margin-top: .5em;
   }
   h1 {
     font-size: 2em;
-    @media screen and (min-width: 400px) {
-      font-size: 2.5em
-    }
-    @media screen and (min-width: 550px) {
-      font-size: 3.5em;
-    }
-    @media screen and (min-width: 700px) {
-      font-size: 4em;
-    }
-    @media screen and (min-width: 877px) {
-      font-size: 2.5em;
-    }
-    @media screen and (min-width: 1200px) {
-      font-size: 3.5em;
-    }
-    @media screen and (min-width: 1300px) {
-      font-size: 4em;
-    }
-    @media screen and (min-width: 1500px) {
-      font-size: 5em;
+    span {
+      font-weight: 700;
     }
   }
-  h1 span {
-    color: @darkgrey;
-    font-weight: 700;
-  }
-  h2,h3 {
-    margin: .4em 0;
-    font-size: .9em;
+  h2, h3 {
+    margin: .2em 0;
+    font-size: .8em;
   }
   h2 {
-    font-weight: 700;
+    font-weight: 500;
     color: @teal3;
   }
   h3 {
-    font-weight: 200;
+    font-weight: 400;
     color: @teal1;
   }
   span {
@@ -183,12 +185,13 @@ h1 {
   }
 }
 
-.toc{
+.toc {
+  font-size: 0.8em;
   width: 100%;
   text-align: center;
   img {
     margin-bottom: 5em;
-    width: 5em;
+    width: 4.4em;
   }
   h1 {
     margin:0;
@@ -201,11 +204,12 @@ h1 {
   }
   .number {
     color: @teal4;
+    margin-bottom: 0.2em;
   }
   .chapter {
     margin-bottom: 2em;
-    a{
-    color: @darkgrey;
+    a {
+      color: @darkgrey;
     }
   }
   p {
@@ -216,13 +220,23 @@ h1 {
     }
   }
 }
+
 .quote {
   font-style: italic;
 }
+
 .crease {
   width: 1px;
-  background-color: @darkgrey;
+  border-left: 0.1px solid;
+  border-right: 0.1px solid;
+  border-color: @lightgrey;
   height: 100%;
   position: fixed;
   left: 50%;
+}
+
+.hide-small {
+  @media screen and (max-width:877px) {
+    display: none;
+  }
 }

@@ -23,11 +23,11 @@
   (defroute "/" []
     (re-frame/dispatch [::events/set-active-view :home-view]))
 
-  (defroute "/our-work" []
-    (re-frame/dispatch [::events/set-active-view :our-work-view]))
+  (defroute "/about" []
+    (re-frame/dispatch [::events/set-active-view :about-view]))
 
-  (defroute "/our-difference" []
-    (re-frame/dispatch [::events/set-active-view :our-difference-view]))
+  (defroute "/connect" []
+    (re-frame/dispatch [::events/set-active-view :connect-view]))
 
 
   ;; --------------------
