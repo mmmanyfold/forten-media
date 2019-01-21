@@ -240,3 +240,79 @@ h1 {
     display: none;
   }
 }
+
+.connect p {
+  margin-bottom: 2em;
+}
+
+input, input::placeholder {
+  border: 0;
+  color: @teal4;
+  outline: 0;
+}
+
+.file-input-outer-wrap {
+  position: relative;
+  color: @teal4;
+}
+
+.file-input-inner-wrap {
+  position: absolute;
+  width: 83px;
+  padding-top: 0.3px;
+  z-index: 10;
+}
+
+input[type=file] {
+  opacity: 0;
+  display: inline-block;
+  width: 83px;
+}
+
+textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  border-color: @teal4;
+  border-radius: 2px;
+  margin-top: 0.5em;
+  outline: 0;
+  color: @teal4;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
