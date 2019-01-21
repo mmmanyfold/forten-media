@@ -16,15 +16,12 @@
       [:img {:src "../img/logo.png"}]
       [:div.chapter
        [:h1.number "4"]
-       [:h1 "intro" [:span "duction"]]]
-      [:div.chapter
-       [:h1.number "10"]
        [:h1 [:a {:href "#/about"}
              "about"]]]
       [:div.chapter
-       [:h1.number "14"]
+       [:h1.number "10"]
        [:h1 [:a {:href "https://vimeo.com/fortenmedia"}
-             [:span "our " ] "work"]]]
+             [:span "our "] "work"]]]
       [:div.chapter
        [:h1.number "410"]
        [:h1 [:a {:href "#/connect"}
