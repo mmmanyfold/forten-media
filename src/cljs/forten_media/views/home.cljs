@@ -2,7 +2,7 @@
 
 
 (defn home-view []
-  [:div.wrapper
+  [:div.wrapper.animated.fadeIn
     [:div.left.hide-small
      [:div.display.w-70
       [:a {:href "https://vimeo.com/fortenmedia"}

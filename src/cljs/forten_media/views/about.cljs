@@ -3,7 +3,7 @@
 
 
 (defn about-view []
-  [:div.wrapper
+  [:div.wrapper.animated.fadeIn
    [:div.left
     [:div.w-80.text.w-100-small
      [:h1 [:span "ABOUT"] " US"]

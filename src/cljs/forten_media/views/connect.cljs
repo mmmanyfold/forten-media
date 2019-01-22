@@ -95,10 +95,10 @@
      [footer-large "410"]]]
 
    [:div.right
-    [:div.display.w-70.w-100-small
-     [:h3 "photo"]
-     [:h3 "footnote project"]
-     [:h2 "special kneads and treats, " [:span "2018"]]
-     [:img {:src "../img/connect.png"}]
+    [:div.display
+     [:iframe
+      {:allowFullScreen "allowfullscreen",
+       :frameBorder "0",
+       :src "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.2443596136322!2d-84.362234784788!3d33.93484268063799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f50eaa1c513eff%3A0x82510a80491c2974!2s1+Glenlake+Pkwy+NE+%23650%2C+Atlanta%2C+GA+30328!5e0!3m2!1sen!2sus!4v1548122891549"}]
 
      [footer-small "410"]]]])
