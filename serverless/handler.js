@@ -11,18 +11,21 @@ const S3 = new AWS.S3({
 	region: process.env.REGION,
 });
 
-export const uploadURL = async (event, context, callback) => {
-	let putRequest = null;
+export const uploadUrl = async (event, context, callback) => {
+	let uploadUrlRequest = null;
 	let params = null;
-
 	const {body} = event
-
 	const buffer = new Buffer(body);
-
 	const Type = fileType(buffer);
 
-	if (Type === null) {
-		return context.fail("boo!");
+	if (Type === null && Type.ext != 'pdf') {
+		return callback(null, {
+			statusCode: 400,
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				error: "Bad request, check file is PDF and not empty"
+			}),
+		});
 	}
 
 	try {
@@ -30,36 +33,35 @@ export const uploadURL = async (event, context, callback) => {
 			Bucket: BUCKET,
 			Key: "foo-file." + Type.ext,
 			ContentType: Type.mime,
+			ACL: 'public-read',
 		};
 
-		putRequest = await getSignedUrlPromise('putObject', params);
-		console.log('putRequest::', putRequest);
+		uploadUrlRequest = await getSignedUrlPromise('putObject', params);
+		console.log('putRequest::', uploadUrlRequest);
 		return callback(null, {
 			statusCode: 200,
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({uploadURL: putRequest}),
+			headers: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': 'http://localhost:3000',
+			},
+			body: JSON.stringify({
+				uploadUrl: uploadUrlRequest,
+			}),
 		});
 	} catch (e) {
-		console.log(e);
-		return callback(null, error(e.message));
+		return callback(null, {
+			statusCode: 500,
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				error: e.message,
+			}),
+		});
 	}
-
-
-	return {
-		statusCode: 200,
-		body: JSON.stringify({
-			message: `Go Serverless v1.0! ${123}`,
-		}),
-	};
 };
 
 //
 // Utilities
 //
-
-function error(message) {
-	return {"error": {"message": message}};
-}
 
 const getSignedUrlPromise = (operation, params) =>
 	new Promise((resolve, reject) => {

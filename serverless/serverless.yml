@@ -30,5 +30,5 @@ functions:
     handler: handler.uploadUrl
     events:
       - http:
-          path: uploadUrl
+          path: upload-url
           method: post
