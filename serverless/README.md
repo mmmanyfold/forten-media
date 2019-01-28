@@ -22,12 +22,12 @@ A Serverless starter that adds ES7 syntax, serverless-offline, environment varia
 
 ### Demo
 
-A demo version of this service is hosted on AWS - [`https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/upload`](https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/upload)
+A demo version of this service is hosted on AWS - [`https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/uploadUrl`](https://z6pv80ao4l.execute-api.us-east-1.amazonaws.com/dev/uploadUrl)
 
 And here is the ES7 source behind it
 
 ``` javascript
-export const upload = async (event, context) => {
+export const uploadUrl = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -80,7 +80,7 @@ $ npm test
 To run a function on your local
 
 ``` bash
-$ serverless invoke local --function upload
+$ serverless invoke local --function uploadUrl
 ```
 
 To simulate API Gateway locally using [serverless-offline](https://github.com/dherault/serverless-offline)
@@ -106,7 +106,7 @@ $ serverless deploy
 Deploy a single function
 
 ``` bash
-$ serverless deploy function --function upload
+$ serverless deploy function --function uploadUrl
 ```
 
 To add another function as a new file to your project, simply add the new file and add the reference to `serverless.yml`. The `webpack.config.js` automatically handles functions in different files.

@@ -1,6 +1,6 @@
 import * as handler from '../handler';
 
-test('hello', async () => {
+test('uploadURL', async () => {
 	const event = 'event';
 	const context = 'context';
 	const callback = (error, response) => {
@@ -8,5 +8,5 @@ test('hello', async () => {
 		expect(typeof response.body).toBe("string");
 	};
 
-	await handler.hello(event, context, callback);
+	await handler.uploadURL(event, context, callback);
 });

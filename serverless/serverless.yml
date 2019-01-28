@@ -1,5 +1,5 @@
 # NOTE: update this with your service name
-service: upload-service
+service: upload-url-service
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -23,12 +23,12 @@ provider:
   # the following line. Also, make sure to not
   # commit your env.yml.
   #
-  #environment: ${file(env.yml):${self:provider.stage}}
+  environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
-  upload:
-    handler: handler.upload
+  uploadUrl:
+    handler: handler.uploadUrl
     events:
       - http:
-          path: upload
+          path: uploadUrl
           method: post
