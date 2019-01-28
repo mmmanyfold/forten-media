@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import fileType from 'file-type';
+import moment from 'moment';
 
 const BUCKET = process.env.BUCKET;
 
@@ -14,16 +15,17 @@ const S3 = new AWS.S3({
 export const uploadUrl = async (event, context, callback) => {
 	let uploadUrlRequest = null;
 	let params = null;
-	const {body} = event
+	const { body } = event
 	const buffer = new Buffer(body);
 	const Type = fileType(buffer);
+	const unix = moment().unix();
 
 	if (Type === null && Type.ext != 'pdf') {
 		return callback(null, {
 			statusCode: 400,
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				error: "Bad request, check file is PDF and not empty"
+				error: 'Bad request, check file is PDF and not empty'
 			}),
 		});
 	}
@@ -31,13 +33,13 @@ export const uploadUrl = async (event, context, callback) => {
 	try {
 		params = {
 			Bucket: BUCKET,
-			Key: "foo-file." + Type.ext,
+			Key: `${unix}.${Type.ext}`,
 			ContentType: Type.mime,
 			ACL: 'public-read',
 		};
 
 		uploadUrlRequest = await getSignedUrlPromise('putObject', params);
-		console.log('putRequest::', uploadUrlRequest);
+
 		return callback(null, {
 			statusCode: 200,
 			headers: {
