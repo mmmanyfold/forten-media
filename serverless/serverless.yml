@@ -12,6 +12,8 @@ custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
+  serverless-offline:
+    port: 4000
 
 provider:
   name: aws
@@ -32,3 +34,4 @@ functions:
       - http:
           path: upload-url
           method: post
+          cors: true
