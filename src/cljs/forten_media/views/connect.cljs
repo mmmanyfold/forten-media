@@ -71,6 +71,14 @@
                     (swap! upload-progress assoc :complete success)))))
             (js/alert (-> response :body :error))))))))
 
+(defn content-editable [label & [opts]]
+  [:span.editable
+   {:width            (or (:width opts) 159)
+    :content-editable true
+    :style            (:style opts)
+    :on-change        #(handle-text-input % :client :name)}
+   label])
+
 (defn connect-view []
   [:div.wrapper
    [:div.left
@@ -79,44 +87,22 @@
      [:div {:class "animated fadeIn"
             :style {:display (if (-> @forms :client :show)
                                "block" "none")}}
-      [:p "Hello, I'm "
-       [:input {:type        "text"
-                :placeholder "your name"
-                :style       {:width "65px"}
-                :on-change   #(handle-text-input % :client :name)}]
-
+      [:p#connect-form "Hello, I'm "
+       [content-editable "your name"]
        " and I would like to be contacted at "
-       [:input {:type        "text"
-                :placeholder "your e-mail/phone number"
-                :style       {:width "159px"}
-                :on-change   #(handle-text-input % :client :contact)}]
-
+       [content-editable "your e-mail/phone number"]
        " to collaborate on a project called "
-       [:input {:type        "text"
-                :placeholder "project name"
-                :style       {:width "80px"}
-                :on-change   #(handle-text-input % :client :project)}]
+       [content-editable "project name" {:width 80}]
        ". Here are the details: "
-
-       [:input {:type        "text"
-                :placeholder "__________________"
-                :style       {:text-decoration "underline"}
-                :on-change   #(handle-text-input % :client :details)}]]]
+       [content-editable "__________________" {:width 80 :style {:text-decoration "underline"}}]]]
 
      [:div {:class "animated fadeIn"
             :style {:display (if (-> @forms :job :show)
                                "block" "none")}}
       [:p "Hello, I'm "
-       [:input {:type        "text"
-                :placeholder "your name"
-                :style       {:width "65px"}
-                :on-change   #(handle-text-input % :job :name)}]
-
+       [content-editable "your name" {:width 65}]
        " and I would like to learn about employment opportunities at Forten Media. I can be contacted at "
-       [:input {:type        "text"
-                :placeholder "your e-mail/phone number"
-                :style       {:width "159px"}
-                :on-change   #(handle-text-input % :job :contact)}]
+       [content-editable "your e-mail/phone number" {:width "159px"}]
 
        ". My resume is "
        [:span.file-input-outer-wrap
@@ -131,11 +117,7 @@
             (> percentage 0) (str " (" percentage "%)")))]
 
        ". My demo reel can be accessed at "
-       [:input {:type        "url"
-                :placeholder "this link"
-                :style       {:width "47px"}
-                :on-change   #(handle-text-input % :job :demo-link)}]
-       "."]
+       [content-editable "this link" {:width 47}] "."]
 
       [:div
        {:class "textarea animated fadeIn"

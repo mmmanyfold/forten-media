@@ -1,3 +1,9 @@
+.editable {
+  display: inline-block;
+  border: 0;
+  color: #139d93;
+  outline: 0;
+}
 @font-face {
   font-family: 'Proxima Nova';
   src: url("../font/proximanova-regular.ttf") format("truetype");
