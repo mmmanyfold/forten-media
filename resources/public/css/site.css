@@ -1,3 +1,37 @@
+input::-ms-clear {
+  display: none;
+}
+input[type=file] {
+  opacity: 0;
+  display: inline-block;
+  width: 83px;
+}
+textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  border-color: #139d93;
+  border-radius: 2px;
+  margin-top: 0.5em;
+  outline: 0;
+  color: #139d93;
+}
+input,
+input::placeholder {
+  border: 0;
+  color: #139d93;
+  outline: 0;
+}
+.file-input-outer-wrap {
+  position: relative;
+  color: #139d93;
+}
+.file-input-inner-wrap {
+  position: absolute;
+  width: 83px;
+  padding-top: 0.3px;
+  z-index: 10;
+}
 @font-face {
   font-family: 'Proxima Nova';
   src: url("../font/proximanova-regular.ttf") format("truetype");
@@ -232,37 +266,6 @@ h1 span {
 }
 .connect p {
   margin-bottom: 2em;
-}
-input,
-input::placeholder {
-  border: 0;
-  color: #139d93;
-  outline: 0;
-}
-.file-input-outer-wrap {
-  position: relative;
-  color: #139d93;
-}
-.file-input-inner-wrap {
-  position: absolute;
-  width: 83px;
-  padding-top: 0.3px;
-  z-index: 10;
-}
-input[type=file] {
-  opacity: 0;
-  display: inline-block;
-  width: 83px;
-}
-textarea {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  border-color: #139d93;
-  border-radius: 2px;
-  margin-top: 0.5em;
-  outline: 0;
-  color: #139d93;
 }
 iframe {
   border: 0;

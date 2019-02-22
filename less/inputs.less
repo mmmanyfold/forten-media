@@ -1,0 +1,38 @@
+@import "vars";
+
+input::-ms-clear {display: none;}
+
+input[type=file] {
+  opacity: 0;
+  display: inline-block;
+  width: 83px;
+}
+
+textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  border-color: @teal4;
+  border-radius: 2px;
+  margin-top: 0.5em;
+  outline: 0;
+  color: @teal4;
+}
+
+input, input::placeholder {
+  border: 0;
+  color: @teal4;
+  outline: 0;
+}
+
+.file-input-outer-wrap {
+  position: relative;
+  color: @teal4;
+}
+
+.file-input-inner-wrap {
+  position: absolute;
+  width: 83px;
+  padding-top: 0.3px;
+  z-index: 10;
+}

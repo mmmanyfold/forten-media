@@ -3,7 +3,8 @@
   (:require [reagent.core :as r]
             [cljs.core.async :refer [<! timeout chan >! go-loop]]
             [cljs-http.client :as http]
-            [forten-media.components.footer :refer [footer-large footer-small]]))
+            [forten-media.components.footer :refer [footer-large footer-small]]
+            [komponentit.autosize :as autosize]))
 
 (def upload-url-endpoint "http://localhost:4000/upload-url")
 
@@ -11,7 +12,7 @@
   (r/atom {:percentage 0
            :complete   false}))
 
-(def forms
+(def form-state
   (r/atom
     {:client
      {:show   true
@@ -34,12 +35,12 @@
 
 (defn handle-text-input [e form field]
   (let [val (-> e .-target .-value)]
-    (swap! forms assoc-in [form :fields field] val)
+    (swap! form-state assoc-in [form :fields field] val)
     (if (= form :client)
-      (swap! forms assoc-in [:job :show]
-             (every? empty? (-> @forms :client :fields vals)))
-      (swap! forms assoc-in [:client :show]
-             (every? empty? (-> @forms :job :fields vals))))))
+      (swap! form-state update-in [:job :show]
+             (every? empty? (-> @form-state :client :fields vals)))
+      (swap! form-state assoc-in [:client :show]
+             (every? empty? (-> @form-state :job :fields vals))))))
 
 (defn handle-upload [e]
   (when-let [file (aget (-> e .-target .-files) 0)]
@@ -77,46 +78,48 @@
     [:div.w-80.text.w-100-small.connect
      [:h1 [:span "CONNECT"]]
      [:div {:class "animated fadeIn"
-            :style {:display (if (-> @forms :client :show)
-                               "block" "none")}}
+            :style {:display (if (-> @form-state :client :show) "block" "none")}}
       [:p "Hello, I'm "
-       [:input {:type        "text"
-                :placeholder "your name"
-                :style       {:width "65px"}
-                :on-change   #(handle-text-input % :client :name)}]
-
+       [autosize/input {:placeholder "your name"
+                        :class       "animated fadeIn"
+                        :style       {:width 65}
+                        :value       (-> @form-state :client :fields :name)
+                        :on-change   #(handle-text-input % :client :name)}]
        " and I would like to be contacted at "
-       [:input {:type        "text"
-                :placeholder "your e-mail/phone number"
-                :style       {:width "159px"}
-                :on-change   #(handle-text-input % :client :contact)}]
-
+       [autosize/input {:placeholder "your e-mail/phone number"
+                        :class       "animated fadeIn"
+                        :style       {:width 159}
+                        :value       (-> @form-state :client :fields :contact)
+                        :on-change   #(handle-text-input % :client :contact)}]
        " to collaborate on a project called "
-       [:input {:type        "text"
-                :placeholder "project name"
-                :style       {:width "80px"}
-                :on-change   #(handle-text-input % :client :project)}]
+       [autosize/input {:placeholder "project name"
+                        :class       "animated fadeIn"
+                        :style       {:width 80}
+                        :value       (-> @form-state :client :fields :project)
+                        :on-change   #(handle-text-input % :client :project)}]
        ". Here are the details: "
-
-       [:input {:type        "text"
-                :placeholder "__________________"
-                :style       {:text-decoration "underline"}
-                :on-change   #(handle-text-input % :client :details)}]]]
+       [autosize/input {:placeholder "__________________"
+                        :class       "animated fadeIn"
+                        :style       {:width 80 :text-decoration "underline"}
+                        :value       (-> @form-state :client :fields :details)
+                        :on-change   #(handle-text-input % :client :details)}]]]
 
      [:div {:class "animated fadeIn"
-            :style {:display (if (-> @forms :job :show)
+            :style {:display (if (-> @form-state :job :show)
                                "block" "none")}}
       [:p "Hello, I'm "
-       [:input {:type        "text"
-                :placeholder "your name"
-                :style       {:width "65px"}
-                :on-change   #(handle-text-input % :job :name)}]
+       [autosize/input {:placeholder "your name"
+                        :class       "animated fadeIn"
+                        :style       {:width 65}
+                        :value       (-> @form-state :job :fields :name)
+                        :on-change   #(handle-text-input % :job :name)}]
 
        " and I would like to learn about employment opportunities at Forten Media. I can be contacted at "
-       [:input {:type        "text"
-                :placeholder "your e-mail/phone number"
-                :style       {:width "159px"}
-                :on-change   #(handle-text-input % :job :contact)}]
+       [autosize/input {:placeholder "your e-mail/phone number"
+                        :class       "animated fadeIn"
+                        :style       {:width 159}
+                        :value       (-> @form-state :job :fields :contact)
+                        :on-change   #(handle-text-input % :job :contact)}]
 
        ". My resume is "
        [:span.file-input-outer-wrap
@@ -131,19 +134,22 @@
             (> percentage 0) (str " (" percentage "%)")))]
 
        ". My demo reel can be accessed at "
-       [:input {:type        "url"
-                :placeholder "this link"
-                :style       {:width "47px"}
-                :on-change   #(handle-text-input % :job :demo-link)}]
-       "."]
+       [autosize/input {:placeholder "this link"
+                        :class       "animated fadeIn"
+                        :style       {:width 47}
+                        :value       (-> @form-state :job :fields :demo-link)
+                        :on-change   #(handle-text-input % :job :demo-link)}] "."]
 
       [:div
        {:class "textarea animated fadeIn"
-        :style {:display (if (every? empty? (-> @forms :job :fields vals))
+        :style {:display (if (every? empty? (-> @form-state :job :fields vals))
                            "none" "block")}}
        "A brief cover letter is below:" [:br]
-       [:textarea {:rows      "3"
-                   :on-change #(handle-text-input % :job :cover-letter)}]]]
+       [autosize/textarea
+        {:min-rows  3
+         :max-rows  15
+         :value     (-> @form-state :job :fields :cover-letter)
+         :on-change #(handle-text-input % :job :cover-letter)}]]]
 
      [footer-large "410"]]]
 
