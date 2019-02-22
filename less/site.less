@@ -1,9 +1,5 @@
-@teal1: #a2dbd7;
-@teal2: #7dcdc7;
-@teal3: #4fb9b1;
-@teal4: #139d93;
-@darkgrey: #313131;
-@lightgrey: #bfbfbf;
+@import 'inputs.less';
+@import 'vars.less';
 
 @font-face {
   font-family: 'Proxima Nova';
@@ -243,41 +239,6 @@ h1 {
 
 .connect p {
   margin-bottom: 2em;
-}
-
-input, input::placeholder {
-  border: 0;
-  color: @teal4;
-  outline: 0;
-}
-
-.file-input-outer-wrap {
-  position: relative;
-  color: @teal4;
-}
-
-.file-input-inner-wrap {
-  position: absolute;
-  width: 83px;
-  padding-top: 0.3px;
-  z-index: 10;
-}
-
-input[type=file] {
-  opacity: 0;
-  display: inline-block;
-  width: 83px;
-}
-
-textarea {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  border-color: @teal4;
-  border-radius: 2px;
-  margin-top: 0.5em;
-  outline: 0;
-  color: @teal4;
 }
 
 iframe {
