@@ -6,7 +6,7 @@
             [forten-media.components.footer :refer [footer-large footer-small]]
             [komponentit.autosize :as autosize]))
 
-(def upload-url-endpoint "http://localhost:4000/upload-url")
+(def serverless-endpoint "http://localhost:4000/s3-url")
 
 (def upload-progress
   (r/atom {:percentage 0
@@ -14,26 +14,28 @@
 
 (def form-state
   (r/atom
-    {:client
-     {:show   true
-      :fields {:name    nil
-               :contact nil
-               :project nil
-               :details nil}}
+    {:s3-key nil
+     :s3-download-url nil
+     :client
+             {:show   true
+              :fields {:name    nil
+                       :contact nil
+                       :project nil
+                       :details nil}}
      :job
-     {:show   true
-      :fields {:name         nil
-               :contact      nil
-               :resume-file  nil
-               :demo-link    nil
-               :cover-letter nil}}}))
+             {:show   true
+              :fields {:name         nil
+                       :contact      nil
+                       :resume-file  nil
+                       :demo-link    nil
+                       :cover-letter nil}}}))
 
-(defn calc-percent [upload]
+(defn- calc-percent [upload]
   (let [{loaded :loaded total :total} upload]
     (when (every? #(> % 0) [total loaded])
       (js/Math.round (* (/ loaded total) 100)))))
 
-(defn handle-text-input [e form field]
+(defn- handle-text-input [e form field]
   (let [val (-> e .-target .-value)]
     (swap! form-state assoc-in [form :fields field] val)
     (if (= form :client)
@@ -41,6 +43,18 @@
              (every? empty? (-> @form-state :client :fields vals)))
       (swap! form-state assoc-in [:client :show]
              (every? empty? (-> @form-state :job :fields vals))))))
+
+(defn- s3-upload [url name file type progress-chan]
+  (http/put url
+            {:multipart-params  [[name file]]
+             :with-credentials? false
+             :content-type      type
+             :progress          progress-chan}))
+
+(defn- s3-get [key-name]
+  (http/post serverless-endpoint
+             {:json-params {:key key-name
+                            :operation "getObject"}}))
 
 (defn handle-upload [e]
   (when-let [file (aget (-> e .-target .-files) 0)]
@@ -50,26 +64,28 @@
           name (.-name file)]
       (go
         (let [request (http/post
-                        upload-url-endpoint
-                        {:json-params {:type type
-                                       :size size
-                                       :name name}})
+                        serverless-endpoint
+                        {:json-params {:type      type
+                                       :size      size
+                                       :name      name
+                                       :operation "putObject"}})
               response (<! request)]
           (if (= (:status response) 200)
-            (let [upload-url (-> response :body :uploadUrl)]
+            (let [{:keys [uploadUrl key]} (response :body)]
+              (swap! form-state assoc :s3-key key)
               (go
                 (let [progress-chan (chan)
-                      request (http/put upload-url
-                                        {:multipart-params  [[name file]]
-                                         :with-credentials? false
-                                         :content-type      type
-                                         :progress          progress-chan})]
+                      upload-request (s3-upload uploadUrl name file type progress-chan)]
                   (go-loop []
                            (when-let [msg (<! progress-chan)]
                              (swap! upload-progress assoc :percentage (calc-percent msg))
                              (recur)))
-                  (let [{success :success} (<! request)]
-                    (swap! upload-progress assoc :complete success)))))
+                  (let [{success :success} (<! upload-request)]
+                    (swap! upload-progress assoc :complete success)
+                    (when success
+                      (let [{:keys [success body]} (<! (s3-get (@form-state :s3-key)))]
+                        (when success
+                          (swap! form-state assoc :s3-download-url (:url body)))))))))
             (js/alert (-> response :body :error))))))))
 
 (defn connect-view []

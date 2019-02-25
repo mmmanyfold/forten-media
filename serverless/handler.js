@@ -11,16 +11,45 @@ const S3 = new AWS.S3({
 	region: process.env.REGION,
 });
 
-export const uploadUrl = async (event, context, callback) => {
-	const MAX_BYTES = 100000000; // 100mg
-	let uploadUrlRequest = null;
-	let params = null;
-
+export const s3Url = async (event) => {
 	try {
-		const { body } = event;
-		const { type, size, name } = JSON.parse(body);
-		const unix = moment().unix();
+		const json = JSON.parse(event.body);
+		const {  operation } = json;
+		switch (operation) {
+			case 'putObject' :
+				return putObject(json);
+			case 'getObject' :
+				return getObject(json);
+			default:
+				return {
+					statusCode: 400,
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({
+						error: 'Bad request, operation not implemented'
+					}),
+				};
+		}
+	} catch (err) {
+		return {
+			statusCode: 400,
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				error: err.message,
+			}),
+		}
+	}
+}
 
+async function putObject(json) {
+	const MAX_BYTES = 100000000; // 100mg
+	const { type, size, name } = json;
+	const unix = moment().unix();
+	const params = {
+		Bucket: BUCKET,
+		Key: `uploads/${unix}/${name}`,
+		ContentType: type,
+	};
+	try {
 		if (type != 'application/pdf') {
 			return {
 				statusCode: 400,
@@ -40,13 +69,6 @@ export const uploadUrl = async (event, context, callback) => {
 		}
 
 		try {
-			params = {
-				Bucket: BUCKET,
-				Key: `uploads/${unix}/${name}`,
-				ContentType: type,
-			};
-
-			uploadUrlRequest = await getSignedUrlPromise('putObject', params);
 			return {
 				statusCode: 200,
 				headers: {
@@ -54,20 +76,20 @@ export const uploadUrl = async (event, context, callback) => {
 					'Access-Control-Allow-Origin': 'http://localhost:3000',
 				},
 				body: JSON.stringify({
-					uploadUrl: uploadUrlRequest,
+					uploadUrl: await getSignedUrlPromise('putObject', params),
+					key: `uploads/${unix}/${name}`,
 				}),
 			};
-		} catch (e) {
+		} catch (err) {
 			return {
 				statusCode: 500,
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-					error: e.message,
+					error: err.message,
 				}),
 			};
 		}
-	} catch (e) {
-		throw e.message;
+	} catch (_) {
 		return {
 			statusCode: 400,
 			headers: {'Content-Type': 'application/json'},
@@ -76,7 +98,36 @@ export const uploadUrl = async (event, context, callback) => {
 			}),
 		};
 	}
-};
+}
+
+async function getObject(json) {
+	const { key } = json;
+	const params = {
+		Bucket: BUCKET,
+		Key: key,
+	};
+	try {
+		return {
+			statusCode: 200,
+			headers: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': 'http://localhost:3000',
+			},
+			body: JSON.stringify({
+				url: await getSignedUrlPromise('getObject', params),
+			}),
+		};
+	} catch (err) {
+		return {
+			statusCode: 500,
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				error: err.message,
+			}),
+		};
+	}
+}
+
 
 //
 // Utilities

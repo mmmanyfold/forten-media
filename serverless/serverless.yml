@@ -28,10 +28,10 @@ provider:
   environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
-  uploadUrl:
-    handler: handler.uploadUrl
+  s3Url:
+    handler: handler.s3Url
     events:
       - http:
-          path: upload-url
+          path: s3-url
           method: post
           cors: true
