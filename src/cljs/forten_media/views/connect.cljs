@@ -39,7 +39,7 @@
   (let [val (-> e .-target .-value)]
     (swap! form-state assoc-in [form :fields field] val)
     (if (= form :client)
-      (swap! form-state update-in [:job :show]
+      (swap! form-state assoc-in [:job :show]
              (every? empty? (-> @form-state :client :fields vals)))
       (swap! form-state assoc-in [:client :show]
              (every? empty? (-> @form-state :job :fields vals))))))
