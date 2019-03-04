@@ -1,0 +1,56 @@
+@import "_vars";
+
+.footer-wrap {
+  position: fixed;
+  margin-top: 2.5em;
+  padding-bottom: 3.5em;
+  bottom: 0;
+}
+
+.footer {
+  width: 50%;
+  @media screen and (max-width: 877px) {
+    width: 100%;
+  }
+  display: flex;
+
+  div {
+    width: 33%;
+  }
+
+  color: @teal4;
+  font-size: 1.6em;
+  font-weight: 500;
+
+  a {
+    color: @teal1;
+    font-weight: 500;
+    font-size: .55em;
+
+    &:hover {
+      color: @teal4;
+    }
+  }
+}
+
+.footer-wrap.w-80 {
+  display: block;
+  @media screen and (max-width: 877px) {
+    display: none;
+  }
+}
+
+.footer-wrap.w-100-small {
+  display: none;
+  @media screen and (max-width: 877px) {
+    display: block;
+    position: inherit;
+    .footer {
+      display: block;
+
+      div {
+        width: 100%;
+      }
+    }
+  }
+}

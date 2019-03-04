@@ -1,4 +1,4 @@
-@import "vars";
+@import "_vars";
 
 input::-ms-clear {display: none;}
 
@@ -35,4 +35,33 @@ input, input::placeholder {
   width: 83px;
   padding-top: 0.3px;
   z-index: 10;
+}
+
+button#send {
+  margin: 1em 0;
+  color: white;
+  background-color: @teal3;
+  padding: 0.22em 0.5em 0.19em 0.5em;
+  letter-spacing: 1px;
+  font-weight: 400;
+  &:hover {
+    background-color: @teal4;
+  }
+}
+
+i.fas.fa-sync-alt {
+  color: @teal4;
+  &:hover {
+    color: @darkgrey;
+  }
+}
+
+a#reset-btn {
+  color: @teal1;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.88em;
+  &:hover {
+    color: @teal4;
+  }
 }

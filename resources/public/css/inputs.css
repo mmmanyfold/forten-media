@@ -1,34 +1,66 @@
 input::-ms-clear {
-  display: none;
+    display: none;
 }
+
 input[type=file] {
-  opacity: 0;
-  display: inline-block;
-  width: 83px;
+    opacity: 0;
+    display: inline-block;
+    width: 83px;
 }
+
 textarea {
-  width: 100%;
-  min-width: 100%;
-  max-width: 100%;
-  border-color: #139d93;
-  border-radius: 2px;
-  margin-top: 0.5em;
-  outline: 0;
-  color: #139d93;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    border-color: #139d93;
+    border-radius: 2px;
+    margin-top: 0.5em;
+    outline: 0;
+    color: #139d93;
 }
+
 input,
 input::placeholder {
-  border: 0;
-  color: #139d93;
-  outline: 0;
+    border: 0;
+    color: #139d93;
+    outline: 0;
 }
+
 .file-input-outer-wrap {
-  position: relative;
-  color: #139d93;
+    position: relative;
+    color: #139d93;
 }
+
 .file-input-inner-wrap {
-  position: absolute;
-  width: 83px;
-  padding-top: 0.3px;
-  z-index: 10;
+    position: absolute;
+    width: 83px;
+    padding-top: 0.3px;
+    z-index: 10;
+}
+
+button#send {
+    margin: 0.5em 0;
+    color: #139d93;
+    border: 1px solid #139d93;
+}
+
+button#send:hover {
+    color: #313131;
+    border: 1px solid #313131;
+}
+
+i.fas.fa-sync-alt {
+    color: #139d93;
+}
+
+i.fas.fa-sync-alt:hover {
+    color: #313131;
+}
+
+#reset-btn {
+    margin: 0.5em 0;
+    color: #139d93;
+    border: 1px solid #139d93;
+    text-align: left;
+    top: -8%;
 }

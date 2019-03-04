@@ -38,7 +38,7 @@ export const s3Url = async (event) => {
 			}),
 		}
 	}
-}
+};
 
 async function putObject(json) {
 	const MAX_BYTES = 100000000; // 100mg
@@ -73,7 +73,7 @@ async function putObject(json) {
 				statusCode: 200,
 				headers: {
 					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': 'http://localhost:3000',
+					'Access-Control-Allow-Origin': '*',
 				},
 				body: JSON.stringify({
 					uploadUrl: await getSignedUrlPromise('putObject', params),
@@ -111,7 +111,7 @@ async function getObject(json) {
 			statusCode: 200,
 			headers: {
 				'Content-Type': 'application/json',
-				'Access-Control-Allow-Origin': 'http://localhost:3000',
+				'Access-Control-Allow-Origin': '*',
 			},
 			body: JSON.stringify({
 				url: await getSignedUrlPromise('getObject', params),

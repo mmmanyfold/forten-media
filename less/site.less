@@ -1,36 +1,11 @@
-@import 'inputs.less';
-@import 'vars.less';
-
-@font-face {
-  font-family: 'Proxima Nova';
-  src:url("../font/proximanova-regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight:400;
-}
-@font-face {
-  font-family: 'Proxima Nova';
-  src:url("../font/proximanova-regularit.ttf") format("truetype");
-  font-style: italic;
-  font-weight:400;
-}
-@font-face {
-  font-family: 'Proxima Nova';
-  src:url("../font/proximanova-extrabold.ttf") format("truetype");
-  font-style: normal;
-  font-weight:700;
-}
-@font-face {
-  font-family: 'Proxima Nova';
-  src:url("../font/proximanova-thin.ttf") format("truetype");
-  font-style: normal;
-  font-weight:200;
-}
-@font-face {
-  font-family: 'Proxima Nova';
-  src:url("../font/proximanova-bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight:500;
-}
+@import '_vars.less';
+@import '_fonts.less';
+@import '_inputs.less';
+@import '_footer.less';
+@import '_animations.less';
+@import '_colors.less';
+@import '_toc.less';
+@import '_map.less';
 
 body {
   color: @darkgrey;
@@ -72,68 +47,26 @@ a, a:hover, a:active, a:focus {
 .w-70 {
   width: 70%;
 }
+
 .w-60 {
   width: 60%;
 }
+
 .w-50 {
   width: 50%;
 }
+
 .w-40 {
   width: 40%;
 }
+
 .w-80 {
   width: 80%;
 }
+
 .w-100-small {
   @media screen and (max-width: 600px) {
     width: 100%;
-  }
-}
-
-.footer-wrap {
-  position: fixed;
-  margin-top: 2.5em;
-  padding-bottom: 3.5em;
-  bottom: 0;
-}
-
-.footer {
-  width: 50%;
-  @media screen and (max-width:877px) {
-    width: 100%;
-  }
-  display: flex;
-  div {
-    width: 33%;
-  }
-  color: @teal4;
-  font-size: 1.6em;
-  font-weight: 500;
-  a {
-    color: @teal1;
-    font-weight: 500;
-    font-size: .55em;
-  }
-}
-
-.footer-wrap.w-80 {
-  display: block;
-  @media screen and (max-width:877px) {
-    display: none;
-  }
-}
-
-.footer-wrap.w-100-small {
-  display: none;
-  @media screen and (max-width:877px) {
-    display: block;
-    position: inherit;
-    .footer {
-      display: block;
-      div {
-        width: 100%;
-      }
-    }
   }
 }
 
@@ -141,14 +74,16 @@ h1 {
   text-align: center;
   margin-top: 0;
   margin-bottom: 1em;
+
   span {
     font-weight: 700;
   }
+
   font-weight: 400;
   font-size: 3.5em;
 }
 
-.text{
+.text {
   margin-bottom: 2.5em;
 }
 
@@ -158,62 +93,32 @@ h1 {
     margin-bottom: .5em;
     margin-top: .5em;
   }
+
   h1 {
     font-size: 2em;
+
     span {
       font-weight: 700;
     }
   }
+
   h2, h3 {
     margin: .2em 0;
     font-size: .8em;
   }
+
   h2 {
     font-weight: 500;
     color: @teal3;
   }
+
   h3 {
     font-weight: 400;
     color: @teal1;
   }
+
   span {
     color: @teal1;
-  }
-}
-
-.toc {
-  font-size: 0.8em;
-  width: 100%;
-  text-align: center;
-  img {
-    margin-bottom: 5em;
-    width: 4.4em;
-  }
-  h1 {
-    margin:0;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 2em;
-    span {
-      font-weight: 400;
-    }
-  }
-  .number {
-    color: @teal4;
-    margin-bottom: 0.2em;
-  }
-  .chapter {
-    margin-bottom: 2em;
-    a {
-      color: @darkgrey;
-    }
-  }
-  p {
-    font-size: 1.2em;
-    margin: 0;
-    span {
-      font-weight: 400;
-    }
   }
 }
 
@@ -232,76 +137,19 @@ h1 {
 }
 
 .hide-small {
-  @media screen and (max-width:877px) {
+  @media screen and (max-width: 877px) {
     display: none;
   }
 }
 
 .connect p {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
-iframe {
-  border: 0;
-  width: 340px;
-  height: 340px;
+.tc {
+  text-align: center;
 }
 
-@media screen and (min-width: 1190px) {
-  iframe {
-    width: 420px;
-    height: 420px;
-  }
-}
-
-@media screen and (max-width: 877px) {
-  iframe {
-    width: 400px;
-    height: 400px;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  iframe {
-    width: 280px;
-    height: 280px;
-  }
-}
-
-
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-@keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-@-webkit-keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-@keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-}
-
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}
-
-.fadeOut {
-  -webkit-animation-name: fadeOut;
-  animation-name: fadeOut;
+.tl {
+  text-align: left;
 }
