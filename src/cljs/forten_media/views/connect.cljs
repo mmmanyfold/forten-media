@@ -92,8 +92,7 @@
     "http://api.mmmanyfold.com/api/mail"
     {:with-credentials? false
      :json-params       {:from    (-> @form-state :fields :email)
-                         ;:to      "create@fortenmedia.com"
-                         :to      "hello@mmmanyfold.com"
+                         :to      "create@fortenmedia.com"
                          :subject (prepare-email-subject (-> @form-state :type))
                          :body    (prepare-email-body (-> @form-state :type))
                          :domain  "copa.mmmanyfold.com"}}))
