@@ -5,7 +5,9 @@
   [:div.wrapper.animated.fadeIn
    [:div.left.hide-small
     [:div.display.w-70
-     [:a {:href "https://vimeo.com/fortenmedia"}
+     [:a {:href "https://vimeo.com/fortenmedia"
+          :target "_blank"
+          :rel    "noopener noreferrer"}
       [:img {:src "../img/demo-reel.png"}]
       [:h2 "demo reel, " [:span "2017"]]]
      [:h3 "forten media"]
