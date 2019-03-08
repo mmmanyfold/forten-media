@@ -88,6 +88,14 @@ a#reset-btn {
 a#reset-btn:hover {
   color: #139d93;
 }
+p.invalid-email-msg {
+  color: red;
+  margin-bottom: 0;
+  margin-left: 1em;
+}
+.email-input {
+  padding-bottom: 0;
+}
 .footer-wrap {
   position: fixed;
   margin-top: 2.5em;
@@ -365,12 +373,13 @@ h1 span {
     display: none;
   }
 }
-.connect p {
-  margin-bottom: 1em;
-}
 .tc {
   text-align: center;
 }
 .tl {
   text-align: left;
+}
+.flex {
+  display: flex;
+  align-items: center;
 }

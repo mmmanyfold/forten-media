@@ -6,6 +6,8 @@
             [forten-media.components.footer :refer [footer-large footer-small]]
             [komponentit.autosize :as autosize]))
 
+(declare is-email-valid?)
+
 (def serverless-endpoint "https://ebxldex1g6.execute-api.us-west-2.amazonaws.com/dev/s3-url")
 
 (def subject-lines {:client "Connect: Potential Client"
@@ -18,6 +20,7 @@
 (def init-state
   {:s3-key nil
    :type   #{:client :job}
+   :valid? nil
    :fields {:name         ""
             :email        ""
             :phone        ""
@@ -39,6 +42,8 @@
   (let [val (-> e .-target .-value)]
     (swap! form-state assoc
            :type #{type}
+           :valid? (when-not (= :name field)
+                     (and (is-email-valid? val) (not (empty? val))))
            :fields (merge (:fields @form-state) {field val}))))
 
 (defn- s3-upload [url name file type progress-chan]
@@ -76,7 +81,7 @@
         "<p><b>Here are the details: </b>" "<br/>" details "</p>")
       (str
         "<p>Hello, I'm <b>" name "</b> and I would like to learn about employment opportunities at Forten Media." "</p>"
-        "<p>I can be contacted at " email " / " phone  "</p>"
+        "<p>I can be contacted at " email " / " phone "</p>"
         "<p>My <b>resume</b> is attached <a href='" resume-file "'>here</a></p>"
         "<p>My <b>demo reel</b> can be accessed at " demo-link "</p>"
         "<p>A brief <b>cover letter</b> is below:" "</p>"
@@ -99,12 +104,18 @@
 
 (defn- is-email-valid? [email]
   (let [regex #"^[^\s@]+@[^\s@]+\.[^\s@]+$"]
-    (re-seq regex email)))
+    (coll? (re-seq regex email))))
 
 (defn- is-form-valid? []
   (let [email (-> @form-state :fields :email)]
     (and (not= @form-state init-state)
          (is-email-valid? email))))
+
+(defn- validate-email-input []
+  (let [state (-> @form-state :valid?)]
+    (if (or state (nil? state))
+      "none"
+      "1px solid red")))
 
 (defn handle-upload [e]
   (when-let [file (aget (-> e .-target .-files) 0)]
@@ -157,6 +168,15 @@
                       (js/alert (:body email-response))))))}
    "SEND"])
 
+(defn invalid-email-msg []
+  (let [state (:valid? @form-state)]
+    [:p.invalid-email-msg
+     {:style
+      {:display (if (or state (nil? state))
+                  "none"
+                  "block")}}
+     [:small "invalid email address"]]))
+
 (defn connect-view []
   (let [_ (reset! form-state init-state)]
     (fn []
@@ -174,7 +194,7 @@
 
          [:div {:class "animated fadeIn"
                 :style {:margin-top "2em"
-                        :display (if (:client (-> @form-state :type)) "block" "none")}}
+                        :display    (if (:client (-> @form-state :type)) "block" "none")}}
           [:p "Hello, I'm "
            [autosize/input {:placeholder "your name"
                             :class       "animated fadeIn"
@@ -184,8 +204,8 @@
            " and I would like to be contacted at "
            [autosize/input {:placeholder "your e-mail"
                             :type        "email"
-                            :class       "animated fadeIn"
-                            :style       {:width 159}
+                            :class       "animated fadeIn email-input"
+                            :style       {:width 159 :border-bottom (validate-email-input)}
                             :value       (-> @form-state :fields :email)
                             :on-change   #(handle-text-input % :client :email)}]
            [:span.teal4 " / "]
@@ -212,7 +232,7 @@
 
          [:div {:class "animated fadeIn"
                 :style {:margin-top "2em"
-                        :display (if (:job (-> @form-state :type)) "block" "none")}}
+                        :display    (if (:job (-> @form-state :type)) "block" "none")}}
           [:p "Hello, I'm "
            [autosize/input {:placeholder "your name"
                             :class       "animated fadeIn"
@@ -222,9 +242,9 @@
 
            " and I would like to learn about employment opportunities at Forten Media. I can be contacted at "
            [autosize/input {:placeholder "your e-mail"
-                            :class       "animated fadeIn"
+                            :class       "animated fadeIn email-input"
                             :type        "email"
-                            :style       {:width 159}
+                            :style       {:width 159 :border-bottom (validate-email-input)}
                             :value       (-> @form-state :fields :email)
                             :on-change   #(handle-text-input % :job :email)}]
            [:span.teal4 " / "]
@@ -269,7 +289,9 @@
                 :style {:display (if (:sent! (-> @form-state :type)) "block" "none")}}
           [:p.tc "Thanks for connecting! Your message has been sent."]]
 
-         [submit-btn]
+         [:div.flex
+          [submit-btn]
+          [invalid-email-msg]]
 
          [footer-large "410"]]]
 
