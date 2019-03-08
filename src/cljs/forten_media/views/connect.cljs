@@ -39,12 +39,20 @@
       (js/Math.round (* (/ loaded total) 100)))))
 
 (defn- handle-text-input [e type field]
-  (let [val (-> e .-target .-value)]
+  (let [val (-> e .-target .-value)
+        email (-> @form-state :fields :email)]
     (swap! form-state assoc
            :type #{type}
            :valid? (when-not (= :name field)
-                     (and (is-email-valid? val) (not (empty? val))))
+                     (and (is-email-valid? email) (not (empty? email))))
            :fields (merge (:fields @form-state) {field val}))))
+
+(defn- handle-email-input [e type]
+  (let [val (-> e .-target .-value)]
+    (swap! form-state assoc
+           :type #{type}
+           :valid? (and (is-email-valid? val) (not (empty? val)))
+           :fields (merge (:fields @form-state) {:email val}))))
 
 (defn- s3-upload [url name file type progress-chan]
   (http/put url
@@ -207,7 +215,7 @@
                             :class       "animated fadeIn email-input"
                             :style       {:width 159 :border-bottom (validate-email-input)}
                             :value       (-> @form-state :fields :email)
-                            :on-change   #(handle-text-input % :client :email)}]
+                            :on-change   #(handle-email-input % :client)}]
            [:span.teal4 " / "]
            [autosize/input {:placeholder "phone number"
                             :class       "animated fadeIn"
@@ -246,7 +254,7 @@
                             :type        "email"
                             :style       {:width 159 :border-bottom (validate-email-input)}
                             :value       (-> @form-state :fields :email)
-                            :on-change   #(handle-text-input % :job :email)}]
+                            :on-change   #(handle-email-input % :job)}]
            [:span.teal4 " / "]
            [autosize/input {:placeholder "phone number"
                             :class       "animated fadeIn"
