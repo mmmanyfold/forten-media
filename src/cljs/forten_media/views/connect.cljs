@@ -8,7 +8,7 @@
 
 (declare is-email-valid?)
 
-(def serverless-endpoint "https://ebxldex1g6.execute-api.us-west-2.amazonaws.com/dev/s3-url")
+(def serverless-endpoint "https://c1a150z2og.execute-api.us-east-1.amazonaws.com/prod/s3-url")
 
 (def subject-lines {:client "Connect: Potential Client"
                     :job    "Connect: Employment Inquiry"})
@@ -231,6 +231,7 @@
            ". Here are the details: "
            [autosize/input {:placeholder "__________________"
                             :class       "animated fadeIn"
+                            :max-length  "80"
                             :style       {:width 80 :text-decoration "underline"}
                             :value       (-> @form-state :fields :details)
                             :on-change   #(handle-text-input % :client :details)}]]]
