@@ -1,6 +1,6 @@
 # forten-media
 
-A [re-frame](https://github.com/Day8/re-frame).
+A [re-frame](https://github.com/Day8/re-frame) App.
 
 ## Development Mode
 
